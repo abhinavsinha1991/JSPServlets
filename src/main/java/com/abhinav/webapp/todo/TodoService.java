@@ -21,7 +21,9 @@ public class TodoService {
         todoList.add(new Todo(name));
     }
     
-    public void deleteTodo(){
+    public void deleteTodo(Todo todo){
+
+        todoList.remove(todo);
     
     }
     

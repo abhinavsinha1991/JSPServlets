@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+
 @WebServlet(urlPatterns = "/todo.do")
 public class TodoServlet extends HttpServlet {
     
@@ -18,6 +19,7 @@ public class TodoServlet extends HttpServlet {
     
         
         request.setAttribute("todos",todoService.retrieveTodos());
+
         request.getRequestDispatcher("/WEB-INF/views/welcome.jsp").forward(request, response);
         
         
@@ -26,14 +28,8 @@ public class TodoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         
-        String name=request.getParameter("name");
+        String name=request.getParameter("todo");
         todoService.addTodo(name);
-    }
-    
-    @Override
-    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        
-        //String name=request.getParameter("name");
-        todoService.deleteTodo();
+        response.sendRedirect("/todo.do");
     }
 }
