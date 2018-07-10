@@ -19,9 +19,8 @@ public class TodoServlet extends HttpServlet {
     
         
         request.setAttribute("todos",todoService.retrieveTodos());
-
         request.getRequestDispatcher("/WEB-INF/views/welcome.jsp").forward(request, response);
-        
+
         
     }
     
@@ -29,7 +28,13 @@ public class TodoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         
         String name=request.getParameter("todo");
-        todoService.addTodo(name);
-        response.sendRedirect("/todo.do");
+        if(!name.isEmpty()) {
+            todoService.addTodo(name);
+            response.sendRedirect("/todo.do");
+        } else {
+            request.setAttribute("errorMessage", new String("Enter a non-empty description for Todo"));
+            request.setAttribute("todos",todoService.retrieveTodos());
+            request.getRequestDispatcher("/WEB-INF/views/welcome.jsp").forward(request, response);
+        }
     }
 }

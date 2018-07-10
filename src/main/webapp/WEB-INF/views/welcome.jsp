@@ -47,6 +47,12 @@ padding: 0 15px;
     <div class="container">
         <H1>Welcome ${name}</H2>
 
+        <div>
+                <p>
+                	<font color="red">${errorMessage}</font>
+                </p>
+        </div>
+
         Your Todos are:
         <ol>
             <c:forEach items="${todos}" var="todo">
@@ -54,9 +60,7 @@ padding: 0 15px;
             </c:forEach>
         </o1>
 
-        <p>
-        	<font color="red">${errorMessage}</font>
-        </p>
+
 
         <form method="POST" action="/todo.do">
             Add New Todo <input name="todo" type="text"/> <input name="add" type="submit"/>

@@ -3,6 +3,8 @@ package com.abhinav.webapp.login;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -41,4 +43,21 @@ public class LoginServlet extends HttpServlet {
         }
     }
 
+    @Override
+    public void init() throws ServletException {
+        System.out.println("\n\n init() method called \n\n");
+        super.init();
+    }
+
+    @Override
+    public void service(ServletRequest servletRequest, ServletResponse servletResponse) throws ServletException, IOException {
+        System.out.println("\n\n service method called \n\n");
+	    super.service(servletRequest, servletResponse);
+    }
+
+    @Override
+    public void destroy() {
+        System.out.println("\n\n destroy method called \n\n");
+        super.destroy();
+    }
 }
